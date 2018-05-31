@@ -36,9 +36,6 @@
     <ClCompile Include="MulGraph.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SquareGraph.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="SubGraph.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -46,6 +43,18 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="MatMulGraph.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Operand1Graph.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Operand2Graph.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphOp.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DivGraph.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,9 +77,6 @@
     <ClInclude Include="SubGraph.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SquareGraph.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="MulGraph.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -78,6 +84,18 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="MatMulGraph.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Operand1Graph.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Operand2Graph.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphOp.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DivGraph.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

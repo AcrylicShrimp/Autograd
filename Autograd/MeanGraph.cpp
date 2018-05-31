@@ -8,12 +8,10 @@
 
 namespace Autograd
 {
-	MeanGraph::MeanGraph(Graph *pLeft) :
-		sShape{1},
-		pLeft{pLeft}
+	MeanGraph::MeanGraph(const GraphNode &sLeft) :
+		Operand1Graph(sLeft),
+		sShape{1}
 	{
-		this->beNext(pLeft);
-
 		this->forward();
 	}
 

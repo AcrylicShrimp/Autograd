@@ -8,21 +8,21 @@
 
 namespace Autograd
 {
-	Shape::Shape(std::initializer_list<int> sShape) :
+	Shape::Shape(std::initializer_list<uint32_t> sShape) :
 		sShape{sShape.begin(), sShape.end()}
 	{
 		//Empty.
 	}
 
-	bool Shape::operator==(std::initializer_list<int> sShape) const
+	bool Shape::operator==(std::initializer_list<uint32_t> sShape) const
 	{
-		if (this->dimension() != sShape.size())
+		if (this->rank() != sShape.size())
 			return false;
 
 		const auto pShape{sShape.begin()};
 
-		for (std::size_t nDimension{0}, nMaxDimension{this->dimension()}; nDimension < nMaxDimension; ++nDimension)
-			if (this->size(nDimension) != pShape[nDimension])
+		for (std::size_t nAxis{0}, nMaxAxis{this->rank()}; nAxis < nMaxAxis; ++nAxis)
+			if (this->size(nAxis) != pShape[nAxis])
 				return false;
 
 		return true;
@@ -30,25 +30,25 @@ namespace Autograd
 
 	bool Shape::operator==(const Shape &sSrc) const
 	{
-		if (this->dimension() != sSrc.dimension())
+		if (this->rank() != sSrc.rank())
 			return false;
 
-		for (std::size_t nDimension{0}, nMaxDimension{this->dimension()}; nDimension < nMaxDimension; ++nDimension)
-			if (this->size(nDimension) != sSrc.size(nDimension))
+		for (std::size_t nAxis{0}, nMaxAxis{this->rank()}; nAxis < nMaxAxis; ++nAxis)
+			if (this->size(nAxis) != sSrc.size(nAxis))
 				return false;
 
 		return true;
 	}
 
-	bool Shape::operator!=(std::initializer_list<int> sShape) const
+	bool Shape::operator!=(std::initializer_list<uint32_t> sShape) const
 	{
-		if (this->dimension() != sShape.size())
+		if (this->rank() != sShape.size())
 			return true;
 
 		const auto pShape{sShape.begin()};
 
-		for (std::size_t nDimension{0}, nMaxDimension{this->dimension()}; nDimension < nMaxDimension; ++nDimension)
-			if (this->size(nDimension) != pShape[nDimension])
+		for (std::size_t nAxis{0}, nMaxAxis{this->rank()}; nAxis < nMaxAxis; ++nAxis)
+			if (this->size(nAxis) != pShape[nAxis])
 				return true;
 
 		return false;
@@ -56,11 +56,11 @@ namespace Autograd
 
 	bool Shape::operator!=(const Shape &sSrc) const
 	{
-		if (this->dimension() != sSrc.dimension())
+		if (this->rank() != sSrc.rank())
 			return true;
 
-		for (std::size_t nDimension{0}, nMaxDimension{this->dimension()}; nDimension < nMaxDimension; ++nDimension)
-			if (this->size(nDimension) != sSrc.size(nDimension))
+		for (std::size_t nAxis{0}, nMaxAxis{this->rank()}; nAxis < nMaxAxis; ++nAxis)
+			if (this->size(nAxis) != sSrc.size(nAxis))
 				return true;
 
 		return false;
@@ -70,14 +70,20 @@ namespace Autograd
 	{
 		std::string sResult{"["};
 
-		for (std::size_t nDimension{0}, nMaxDimension{this->dimension()}; nDimension < nMaxDimension; ++nDimension)
+		for (std::size_t nAxis{0}, nMaxAxis{this->rank()}; nAxis < nMaxAxis; ++nAxis)
 		{
-			if (nDimension)
+			if (nAxis)
 				sResult += ", ";
 
-			sResult += std::to_string(this->size(nDimension));
+			sResult += std::to_string(this->size(nAxis));
 		}
 
 		return sResult += "]";
+	}
+
+	void Shape::normalize()
+	{
+		while (!this->sShape.empty() && this->sShape.front() == 1)
+			this->sShape.erase(this->sShape.begin());
 	}
 }

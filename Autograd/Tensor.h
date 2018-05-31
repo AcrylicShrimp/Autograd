@@ -64,17 +64,20 @@ namespace Autograd
 		std::string toString(std::size_t nDimension, std::size_t nDimensionSize, std::size_t nBeginIndex) const;
 		static Tensor zero(const Shape &sShape);
 		static Tensor one(const Shape &sShape);
+		static Tensor contant(const Shape &sShape, float nConstant);
 	};
 
 	Tensor operator+(const Tensor &sLeft, float nRight);
 	Tensor operator+(float nLeft, const Tensor &sRight);
 	Tensor operator+(const Tensor &sLeft, const Tensor &sRight);
 	Tensor operator-(const Tensor &sLeft, float nRight);
+	Tensor operator-(float nLeft, const Tensor &sRight);
 	Tensor operator-(const Tensor &sLeft, const Tensor &sRight);
 	Tensor operator*(const Tensor &sLeft, float nRight);
 	Tensor operator*(float nLeft, const Tensor &sRight);
 	Tensor operator*(const Tensor &sLeft, const Tensor &sRight);
 	Tensor operator/(const Tensor &sLeft, float nRight);
+	Tensor operator/(float nLeft, const Tensor &sRight);
 	Tensor operator/(const Tensor &sLeft, const Tensor &sRight);
 
 	inline float *Tensor::data()

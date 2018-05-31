@@ -75,6 +75,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -82,6 +83,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -91,6 +93,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -104,6 +107,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -112,25 +116,31 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AddGraph.cpp" />
+    <ClCompile Include="DivGraph.cpp" />
+    <ClCompile Include="GraphOp.cpp" />
     <ClCompile Include="MatMulGraph.cpp" />
     <ClCompile Include="MeanGraph.cpp" />
     <ClCompile Include="MulGraph.cpp" />
+    <ClCompile Include="Operand1Graph.cpp" />
+    <ClCompile Include="Operand2Graph.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Run.cpp" />
-    <ClCompile Include="SquareGraph.cpp" />
     <ClCompile Include="SubGraph.cpp" />
     <ClCompile Include="Tensor.cpp" />
     <ClCompile Include="ValueGraph.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddGraph.h" />
+    <ClInclude Include="DivGraph.h" />
+    <ClInclude Include="GraphOp.h" />
     <ClInclude Include="MatMulGraph.h" />
     <ClInclude Include="MeanGraph.h" />
     <ClInclude Include="MulGraph.h" />
+    <ClInclude Include="Operand1Graph.h" />
+    <ClInclude Include="Operand2Graph.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Graph.h" />
-    <ClInclude Include="SquareGraph.h" />
     <ClInclude Include="SubGraph.h" />
     <ClInclude Include="Tensor.h" />
     <ClInclude Include="ValueGraph.h" />

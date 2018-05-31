@@ -8,13 +8,9 @@
 
 namespace Autograd
 {
-	AddGraph::AddGraph(Graph *pLeft, Graph *pRight) :
-		pLeft{pLeft},
-		pRight{pRight}
+	AddGraph::AddGraph(const GraphNode &sLeft, const GraphNode &sRight) :
+		Operand2Graph(sLeft, sRight)
 	{
-		this->beNext(pLeft);
-		this->beNext(pRight);
-
 		this->forward();
 	}
 

@@ -8,7 +8,7 @@
 
 #define _CLASS_AUTOGRAD_MATMULGRAPH_H
 
-#include "Graph.h"
+#include "Operand2Graph.h"
 #include "Shape.h"
 #include "Tensor.h"
 
@@ -16,15 +16,13 @@
 
 namespace Autograd
 {
-	class MatMulGraph final : public Graph
+	class MatMulGraph final : public Operand2Graph
 	{
-	private:
+	protected:
 		Shape sShape;
-		Graph *pLeft;
-		Graph *pRight;
 		
 	public:
-		MatMulGraph(Graph *pLeft, Graph *pRight);
+		MatMulGraph(const GraphNode &sLeft, const GraphNode &sRight);
 		MatMulGraph(const MatMulGraph &sSrc) = default;
 		~MatMulGraph() = default;
 		
@@ -32,24 +30,12 @@ namespace Autograd
 		MatMulGraph &operator=(const MatMulGraph &sSrc) = default;
 		
 	public:
-		inline Graph *left() const;
-		inline Graph *right() const;
 		virtual const Shape &shape() const override;
 		virtual Tensor forward() override;
 
 	protected:
 		virtual Tensor backwardPath(Graph *pPrev) override;
 	};
-
-	inline Graph *MatMulGraph::left() const
-	{
-		return this->pLeft;
-	}
-
-	inline Graph *MatMulGraph::right() const
-	{
-		return this->pRight;
-	}
 }
 
 #endif

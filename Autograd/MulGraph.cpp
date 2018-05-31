@@ -8,13 +8,9 @@
 
 namespace Autograd
 {
-	MulGraph::MulGraph(Graph *pLeft, Graph *pRight) :
-		pLeft{pLeft},
-		pRight{pRight}
+	MulGraph::MulGraph(const GraphNode &sLeft, const GraphNode &sRight) :
+		Operand2Graph(sLeft, sRight)
 	{
-		this->beNext(pLeft);
-		this->beNext(pRight);
-
 		this->forward();
 	}
 
@@ -30,6 +26,6 @@ namespace Autograd
 
 	Tensor MulGraph::backwardPath(Graph *pPrev)
 	{
-		return this->pLeft == pPrev ? this->pRight->forward() * this->backward() : this->pLeft->forward() * this->backward();
+		return this->pLeft.get() == pPrev ? this->pRight->forward() * this->backward() : this->pLeft->forward() * this->backward();
 	}
 }

@@ -181,7 +181,7 @@ namespace Autograd
 
 	std::string Tensor::toString(std::size_t nDimension, std::size_t nDimensionSize, std::size_t nBeginIndex) const
 	{
-		if (nDimension + 1 == this->sShape.dimension())
+		if (nDimension + 1 == this->sShape.rank())
 			return std::to_string(this->sTensor[nBeginIndex]);
 
 		std::string sResult{"["};
@@ -216,6 +216,15 @@ namespace Autograd
 		return sTensor;
 	}
 
+	Tensor Tensor::contant(const Shape &sShape, float nConstant)
+	{
+		Tensor sTensor{sShape};
+
+		std::fill(sTensor.sTensor.begin(), sTensor.sTensor.end(), nConstant);
+
+		return sTensor;
+	}
+
 	Tensor operator+(const Tensor &sLeft, float nRight)
 	{
 		return Tensor{sLeft} += nRight;
@@ -234,6 +243,11 @@ namespace Autograd
 	Tensor operator-(const Tensor &sLeft, float nRight)
 	{
 		return Tensor{sLeft} -= nRight;
+	}
+
+	Tensor operator-(float nLeft, const Tensor &sRight)
+	{
+		return Tensor::contant(sRight.shape(), nLeft) -= sRight;
 	}
 
 	Tensor operator-(const Tensor &sLeft, const Tensor &sRight)
@@ -259,6 +273,11 @@ namespace Autograd
 	Tensor operator/(const Tensor &sLeft, float nRight)
 	{
 		return Tensor{sLeft} /= nRight;
+	}
+
+	Tensor operator/(float nLeft, const Tensor &sRight)
+	{
+		return Tensor::contant(sRight.shape(), nLeft) /= sRight;
 	}
 
 	Tensor operator/(const Tensor &sLeft, const Tensor &sRight)

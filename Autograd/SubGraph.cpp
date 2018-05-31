@@ -8,13 +8,9 @@
 
 namespace Autograd
 {
-	SubGraph::SubGraph(Graph *pLeft, Graph *pRight) :
-		pLeft{pLeft},
-		pRight{pRight}
+	SubGraph::SubGraph(const GraphNode &sLeft, const GraphNode &sRight) :
+		Operand2Graph(sLeft, sRight)
 	{
-		this->beNext(pLeft);
-		this->beNext(pRight);
-
 		this->forward();
 	}
 
@@ -30,6 +26,6 @@ namespace Autograd
 
 	Tensor SubGraph::backwardPath(Graph *pPrev)
 	{
-		return this->pLeft == pPrev ? this->backward() : -this->backward();
+		return this->pLeft.get() == pPrev ? this->backward() : -this->backward();
 	}
 }

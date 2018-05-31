@@ -8,7 +8,7 @@
 
 #define _CLASS_AUTOGRAD_MEANGRAPH_H
 
-#include "Graph.h"
+#include "Operand1Graph.h"
 #include "Shape.h"
 #include "Tensor.h"
 
@@ -16,14 +16,13 @@
 
 namespace Autograd
 {
-	class MeanGraph final : public Graph
+	class MeanGraph final : public Operand1Graph
 	{
 	protected:
 		Shape sShape;
-		Graph *pLeft;
 		
 	public:
-		MeanGraph(Graph *pLeft);
+		MeanGraph(const GraphNode &sLeft);
 		MeanGraph(const MeanGraph &sSrc) = default;
 		~MeanGraph() = default;
 		
@@ -31,18 +30,12 @@ namespace Autograd
 		MeanGraph &operator=(const MeanGraph &sSrc) = default;
 		
 	public:
-		inline Graph *left() const;
 		virtual const Shape &shape() const override;
 		virtual Tensor forward() override;
 
 	protected:
 		virtual Tensor backwardPath(Graph *pPrev) override;
 	};
-
-	inline Graph *MeanGraph::left() const
-	{
-		return this->pLeft;
-	}
 }
 
 #endif
